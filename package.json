@@ -1,0 +1,48 @@
+{
+  "name": "fleetops-dashboard",
+  "version": "1.0.0",
+  "description": "Autonomous robot fleet monitoring dashboard",
+  "main": "dist/app.js",
+  "scripts": {
+    "build": "tsc",
+    "dev": "ts-node src/app.ts",
+    "start": "node dist/app.js",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "lint": "eslint src/**/*.ts",
+    "format": "prettier --write src/**/*.ts"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "uuid": "^9.0.0"
+  },
+  
+  "scripts": {
+    "test:stress": "jest tests/stress --testTimeout=60000 --maxWorkers=1",
+    "test:memory": "node --expose-gc --max-old-space-size=512 ./node_modules/.bin/jest tests/stress/memory-leak.test.ts",
+    "test:race": "jest tests/stress/race-condition.test.ts --testTimeout=30000",
+    "test:load": "jest tests/stress/rapid-operations.test.ts tests/stress/resource-exhaustion.test.ts --testTimeout=45000",
+    "test:time": "jest tests/stress/time-synchronization.test.ts --testTimeout=20000",
+    "test:all-stress": "npm run test:memory && npm run test:race && npm run test:load && npm run test:time"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.17",
+    "@types/cors": "^2.8.13",
+    "@types/uuid": "^9.0.2",
+    "@types/node": "^20.4.2",
+    "@types/jest": "^29.5.3",
+    "typescript": "^5.1.6",
+    "ts-node": "^10.9.1",
+    "jest": "^29.6.1",
+    "ts-jest": "^29.1.1",
+    "@typescript-eslint/eslint-plugin": "^6.2.0",
+    "@typescript-eslint/parser": "^6.2.0",
+    "eslint": "^8.45.0",
+    "prettier": "^3.0.0"
+  },
+  "keywords": ["robotics", "fleet-management", "dashboard", "real-time"],
+  "author": "Senior Developer",
+  "license": "MIT"
+}
